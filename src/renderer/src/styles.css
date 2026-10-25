@@ -1,0 +1,274 @@
+/**
+ * Nexus Browser design system.
+ *
+ * The palette is defined with plain CSS custom properties so that the theme
+ * (dark / light) and the accent colour can be switched at runtime without
+ * rebuilding the stylesheet. Tailwind consumes them through `@theme inline`.
+ */
+
+@import 'tailwindcss';
+
+:root {
+  --nx-font-sans:
+    'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial,
+    sans-serif;
+  --nx-font-mono: 'Cascadia Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
+
+  --nx-radius-sm: 6px;
+  --nx-radius-md: 10px;
+  --nx-radius-lg: 14px;
+  --nx-radius-xl: 20px;
+
+  --nx-duration-fast: 120ms;
+  --nx-duration-base: 180ms;
+}
+
+/* --------------------------------------------------------------- dark --- */
+
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --nx-bg: #0a0c11;
+  --nx-bg-elevated: #10131b;
+  --nx-surface: #141824;
+  --nx-surface-2: #1a1f2e;
+  --nx-surface-3: #222839;
+  --nx-border: #262c3d;
+  --nx-border-strong: #333b52;
+
+  --nx-text: #e8ebf2;
+  --nx-text-muted: #9aa4b8;
+  --nx-text-subtle: #6a7387;
+
+  --nx-success: #34d399;
+  --nx-warning: #fbbf24;
+  --nx-danger: #f87171;
+
+  --nx-shadow-color: 0deg 0% 0%;
+  --nx-overlay: rgb(4 6 12 / 0.62);
+}
+
+/* -------------------------------------------------------------- light --- */
+
+[data-theme='light'] {
+  color-scheme: light;
+
+  --nx-bg: #eef1f7;
+  --nx-bg-elevated: #ffffff;
+  --nx-surface: #ffffff;
+  --nx-surface-2: #f4f6fb;
+  --nx-surface-3: #e7ebf4;
+  --nx-border: #d9dfea;
+  --nx-border-strong: #c2cadb;
+
+  --nx-text: #14181f;
+  --nx-text-muted: #55607a;
+  --nx-text-subtle: #7d879b;
+
+  --nx-success: #0f9d63;
+  --nx-warning: #b45309;
+  --nx-danger: #dc2626;
+
+  --nx-shadow-color: 215deg 40% 40%;
+  --nx-overlay: rgb(20 24 31 / 0.38);
+}
+
+/* ------------------------------------------------------------ accents --- */
+
+[data-accent='violet'] {
+  --nx-accent: #8b5cf6;
+  --nx-accent-strong: #7c3aed;
+  --nx-accent-contrast: #ffffff;
+}
+
+[data-accent='cyan'] {
+  --nx-accent: #06b6d4;
+  --nx-accent-strong: #0891b2;
+  --nx-accent-contrast: #04212a;
+}
+
+[data-accent='blue'] {
+  --nx-accent: #3b82f6;
+  --nx-accent-strong: #2563eb;
+  --nx-accent-contrast: #ffffff;
+}
+
+[data-accent='emerald'] {
+  --nx-accent: #10b981;
+  --nx-accent-strong: #059669;
+  --nx-accent-contrast: #04241a;
+}
+
+[data-accent='amber'] {
+  --nx-accent: #f59e0b;
+  --nx-accent-strong: #d97706;
+  --nx-accent-contrast: #2a1a02;
+}
+
+@theme inline {
+  --font-sans: var(--nx-font-sans);
+  --font-mono: var(--nx-font-mono);
+
+  --color-bg: var(--nx-bg);
+  --color-bg-elevated: var(--nx-bg-elevated);
+  --color-surface: var(--nx-surface);
+  --color-surface-2: var(--nx-surface-2);
+  --color-surface-3: var(--nx-surface-3);
+  --color-line: var(--nx-border);
+  --color-line-strong: var(--nx-border-strong);
+
+  --color-ink: var(--nx-text);
+  --color-ink-muted: var(--nx-text-muted);
+  --color-ink-subtle: var(--nx-text-subtle);
+
+  --color-accent: var(--nx-accent);
+  --color-accent-strong: var(--nx-accent-strong);
+  --color-accent-contrast: var(--nx-accent-contrast);
+
+  --color-success: var(--nx-success);
+  --color-warning: var(--nx-warning);
+  --color-danger: var(--nx-danger);
+
+  --radius-sm: var(--nx-radius-sm);
+  --radius-md: var(--nx-radius-md);
+  --radius-lg: var(--nx-radius-lg);
+  --radius-xl: var(--nx-radius-xl);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--nx-bg);
+  color: var(--nx-text);
+  font-family: var(--nx-font-sans);
+  font-size: 13px;
+  line-height: 1.5;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+:focus-visible {
+  outline: 2px solid var(--nx-accent);
+  outline-offset: 1px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--nx-accent) 40%, transparent);
+}
+
+/* Scrollbars ------------------------------------------------------------ */
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--nx-border-strong);
+  border: 3px solid transparent;
+  background-clip: content-box;
+  border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--nx-text-subtle);
+  background-clip: content-box;
+}
+
+/* Utilities ------------------------------------------------------------- */
+
+.nx-drag {
+  -webkit-app-region: drag;
+}
+
+.nx-no-drag {
+  -webkit-app-region: no-drag;
+}
+
+.nx-scroll {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.nx-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@keyframes nx-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes nx-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.nx-animate-in {
+  animation: nx-fade-in var(--nx-duration-base) ease-out;
+}
+
+.nx-spin {
+  animation: nx-spin 900ms linear infinite;
+}
+
+@keyframes nx-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

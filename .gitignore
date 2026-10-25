@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Build output
+out/
+dist/
+release/
+.vite/
+*.tsbuildinfo
+
+# Test artifacts
+coverage/
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+
+# Local data / secrets
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+.env
+.env.local
+.env.*.local
+secrets.json
+credentials.json
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
